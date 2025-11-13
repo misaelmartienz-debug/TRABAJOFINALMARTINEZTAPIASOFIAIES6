@@ -10,53 +10,33 @@ import com.example.demo.model.Usuario;
 import com.example.demo.service.UsuarioService;
 
 import java.util.List;
-//import java.util.Optional; // Necesario para la búsqueda por ID
+// Necesario para la búsqueda por ID
 
-// Define que esta clase es un controlador MVC tradicional
 
 @Controller
 public class usuarioController {
     
 
-private final UsuarioService Usuarioervice;
+private final UsuarioService Usuarioservice;
 
    
 // Inyección de Dependencias por Constructor (Java 17 style)
-   
-     public void UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
+  public usuarioController(UsuarioService usuarioService) {
+    this.Usuarioservice = usuarioService;
+}
 
     // --- MÉTODOS MVC ---
 
-    // 1. Mostrar la lista de clientes activos (READ ALL - Vista Principal)
-    // GET /clientes/
-    @GetMapping("/listarClientes")
-    public String listarClientesActivos(Model model) {
-        // Obtenemos solo los clientes activos
-        List<Cliente> clientes = clienteService.obtenerTodosClientesActivos();
+    @GetMapping("/listarUsuario")
+    public String listarUsuarioActivos(Model model) {
+        
+        List<Usuario> usuario = UsuarioService.obtenerTodosUsuarioActivos();
 
-        // Agregamos la lista al objeto Model para que la vista pueda acceder a ella
-        model.addAttribute("clientes", clientes);
+        model.addAttribute("usuario", usuario);
 
-        // Retorna el nombre de la plantilla HTML a renderizar (ej: Thymeleaf o JSP)
-        return "listaClientes";
+        
+        return "listaUsuario";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
