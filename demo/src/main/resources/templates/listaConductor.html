@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Usuarios</title>
+    <title>Lista de Conductores</title>
 
     <style>
         body {
@@ -63,9 +63,9 @@
 
 <body>
 
-    <h1>Lista de Usuarios</h1>
+    <h1>Lista de Conductores</h1>
 
-    <a href="/usuarios/nuevo" class="btn btn-new">➕ Nuevo Usuario</a>
+    <a href="/conductores/nuevo" class="btn btn-new">➕ REGISTRARSE </a> 
 
     <table>
         <thead>
@@ -73,7 +73,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Email</th>
+                <th>Correo Electrónico</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>Acciones</th>
@@ -81,20 +81,20 @@
         </thead>
 
         <tbody>
-            <tr th:each="u : ${usuarios}">
-                <td th:text="${u.usuarioId}"></td>
-                <td th:text="${u.nombre}"></td>
-                <td th:text="${u.apellido}"></td>
-                <td th:text="${u.email}"></td>
-                <td th:text="${u.telefono}"></td>
-                <td th:text="${u.direccion}"></td>
+            <tr th:each="c : ${conductores}">
+                <td th:text="${c.conductorId}"></td>
+                <td th:text="${c.nombre}"></td>
+                <td th:text="${c.apellido}"></td>
+                <td th:text="${c.correoElectronico}"></td>
+                <td th:text="${c.telefono}"></td>
+                <td th:text="${c.direccion}"></td>
 
                 <td>
-                    <a th:href="@{/usuarios/editar/{id}(id=${u.usuarioId})}" class="btn btn-edit">
+                    <a th:href="@{/conductores/editar/{id}(id=${c.conductorId})}" class="btn btn-edit">
                         Editar
                     </a>
 
-                    <a th:href="@{/usuarios/eliminar/{id}(id=${u.usuarioId})}" class="btn btn-delete">
+                    <a th:href="@{/conductores/eliminar/{id}(id=${c.conductorId})}" class="btn btn-delete">
                         Eliminar
                     </a>
                 </td>

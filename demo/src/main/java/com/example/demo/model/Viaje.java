@@ -22,8 +22,8 @@ public class Viaje {
 
 
 @ManyToOne 
-    @JoinColumn(name = "auto_id", nullable = false) // Ya NO es UNIQUE
-    private Auto auto;
+    @JoinColumn(name = "vehiculo_id", nullable = false) // Ya NO es UNIQUE
+    private Vehiculo vehiculo;
 
     @Column(nullable = false)
     private LocalDateTime fechaViaje; // Para fecha y hora
@@ -41,9 +41,9 @@ public class Viaje {
     public Viaje() {}
 
 // Constructor con parámetros
-    public Viaje(Usuario usuario , Auto auto, LocalDateTime fechaCompra, Double precioFinal) {
+    public Viaje(Usuario usuario , Vehiculo Vehiculo, LocalDateTime fechaCompra, Double precioFinal) {
         this.usuario = usuario;
-        this.auto = auto;
+        this.vehiculo = vehiculo;
         this.fechaViaje = fechaViaje;
         this.precio = precio;
         this.estado = true;
@@ -60,8 +60,8 @@ public class Viaje {
 
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public Auto getAuto() { return auto; } 
-    public void setAuto(Auto auto) { this.auto = auto; }
+    public Vehiculo getVehiculo() { return vehiculo; } 
+    public void setVehiculo( Vehiculo vehiculo) { this.vehiculo = vehiculo; }
 
     public LocalDateTime getFechaViaje() { return fechaViaje; }
     public void setFechaViaje (LocalDateTime fechaCompra) { this.fechaViaje = fechaViaje; }
