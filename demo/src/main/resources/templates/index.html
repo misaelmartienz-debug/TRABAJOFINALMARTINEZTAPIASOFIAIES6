@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UberApp - Tu viaje comienza aquí</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body { background: #f7f7f7; font-family: Arial; }
+        .navbar { background: black; }
+        .navbar-brand { color: white !important; font-weight: bold; }
+        .nav-link { color: #dcdcdc !important; margin-right: 15px; }
+        .nav-link:hover { color: white !important; }
+
+        /* HERO */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=1500&q=80') 
+                        center/cover no-repeat;
+            height: 380px;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .hero h1 { font-size: 3rem; font-weight: bold; }
+        .hero p { font-size: 1.3rem; }
+
+        .btn-hero {
+            width: 200px;
+            margin-top: 15px;
+            font-size: 18px;
+            background: #28a745;
+            border: none;
+        }
+
+        /* TARJETAS DE OFERTAS */
+        .oferta-card {
+            border-radius: 12px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform .2s;
+        }
+        .oferta-card:hover { transform: scale(1.05); }
+
+        /* TESTIMONIOS */
+        .testimonio {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg px-4">
+        <a class="navbar-brand" href="/">UberApp</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li><a class="nav-link" href="/">Inicio</a></li>
+                <li><a class="nav-link" href="/viajes">Viajes</a></li>
+                <li><a class="nav-link" href="/ayuda">Ayuda</a></li>
+
+                <!-- Si no está logueado -->
+                <li><a class="nav-link btn btn-success text-white px-3" href="/usuarios/nuevo">Registrarse</a></li>
+
+                <!-- Si está logueado (luego lo reemplazamos con Thymeleaf) -->
+                <!-- <li><a class="nav-link" href="#"><span class="badge bg-primary rounded-circle p-2">S</span> Sofi</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero my-4 container">
+        <h1>Tu viaje comienza aquí</h1>
+        <p>Rápido, seguro y al mejor precio. Elegí tu destino.</p>
+        <a href="/viajes" class="btn btn-hero text-white">Pedir un viaje</a>
+    </section>
+
+
+    <!-- OFERTAS -->
+    <div class="container mt-4">
+        <h3 class="mb-3">Ofertas de hoy</h3>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="oferta-card">
+                    <h5>Viajes cortos</h5>
+                    <p>Desde solo <strong>$7000</strong>.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="oferta-card">
+                    <h5>Luxe</h5>
+                    <p>10% de descuento en tu primer viaje Luxe.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="oferta-card">
+                    <h5>Premium</h5>
+                    <p>Viajes más cómodos con +20% de confort.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIOS -->
+    <div class="container mt-5">
+        <h3 class="mb-3">Opiniones</h3>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="testimonio">
+                    ⭐⭐⭐⭐⭐ <br>
+                    “Excelente servicio, rápido y seguro.” <br>
+                    <small>— Juan R.</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="testimonio">
+                    ⭐⭐⭐⭐ <br>
+                    “Muy buenos autos, pedí un Luxe y fue hermoso.” <br>
+                    <small>— María A.</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="testimonio">
+                    ⭐⭐⭐⭐⭐ <br>
+                    “Llegó súper rápido, conductor amable.” <br>
+                    <small>— Sofía T.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="container mt-5">
+        <h3 class="mb-3">Conocé más</h3>
+        <iframe src="https://gamma.app/embed/8m5ybcz0qhy9x2c" style="width: 700px; max-width: 100%; height: 450px" allow="fullscreen" title="Elige tu comodidad"></iframe>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2025 ExpressApp — Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>

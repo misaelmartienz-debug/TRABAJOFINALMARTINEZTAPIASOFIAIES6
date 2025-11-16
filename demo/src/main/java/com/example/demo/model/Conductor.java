@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Entity
 
@@ -13,8 +15,13 @@ public class Conductor {
 
 @Column
  private String apellido;
-@Column
- private Integer telefono;
+
+@Column(nullable = false)
+@Min(1000000000L)   // mínimo 10 dígitos
+@Max(9999999999L)   // máximo 10 dígitos
+ private Long telefono;
+
+
 @Column
 private String  correoElectronico;
 @Column
@@ -22,14 +29,14 @@ private Integer edad;
 @Column
 private String direccion; 
 @Column
-private boolean estado;
+private boolean estado= true;
 
 
 // Constructor por defecto//
 public Conductor() {}
 
 // Contructor con Parametros//
-public Conductor (String nombre, String apellido, Integer telefono, String correoElectronico, Integer edad, String dirección){
+public Conductor (String nombre, String apellido, Long telefono, String correoElectronico, Integer edad, String dirección){
  this.nombre= nombre;
  this.apellido=apellido;
  this.telefono=telefono;
@@ -72,11 +79,11 @@ public void setApellido(String apellido) {
     this.apellido = apellido;
 }
 
-public Integer getTelefono() {
+public Long getTelefono() {
     return telefono;
 }
 
-public void setTelefono(Integer telefono) {
+public void setTelefono(Long telefono) {
     this.telefono = telefono;
 }
 

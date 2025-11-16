@@ -2,7 +2,8 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 
 
 @Entity
@@ -22,8 +23,11 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column
-    private Integer telefono;
+   @Column(nullable = false)
+   @Min(1000000000L)   // mínimo 10 dígitos
+   @Max(9999999999L)   // máximo 10 dígitos
+   private Long telefono;
+
 
     @Column
     private String direccion;
@@ -42,7 +46,7 @@ public class Usuario {
     public Usuario() {}
 
     // Constructor con parámetros
-    public Usuario(String nombre, String apellido, String email, Integer telefono, String direccion) {
+    public Usuario(String nombre, String apellido, String email, Long telefono, String direccion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -69,8 +73,8 @@ public class Usuario {
     public void setEmail(String email) { this.email = email; }
     
     
-    public Integer getTelefono() { return telefono; }
-    public void setTelefono(Integer telefono) { this.telefono = telefono; }
+    public Long getTelefono() { return telefono; }
+    public void setTelefono(Long telefono) { this.telefono = telefono; }
 
     public String getDireccion() { return direccion; }
     public void setDireccion(String direccion) { this.direccion = direccion; }
