@@ -21,11 +21,7 @@ public class ConductorService {
     // Métodos CRUD (5 métodos requeridos) 
 
     // 1. CREAR / GUARDAR (Create)
-    /**
-     * Guarda un nuevo cliente o actualiza uno existente.
-     *  El objeto Cliente a persistir.
-     *  El objeto Cliente guardado/actualizado.
-     */
+  
     public Conductor guardarConductor (Conductor conductor) {
         // La lógica podría ir aquí (ej: validar email antes de guardar)
         return conductorRepository.save(conductor);
@@ -45,9 +41,8 @@ public class ConductorService {
     /**
      * Obtiene un conductor por su ID, independientemente de su estado (activo o inactivo).
      *  El ID del conductor a buscar.
-     *  Un objeto Optional que puede contener el Cliente.
      */
-    public Optional<Conductor> obtenerConductoPorId(Integer ConductorId) {
+    public Optional<Conductor> obtenerConductorPorId(Integer ConductorId) {
         // Usamos findById que devuelve un Optional para manejar la posible ausencia del conductor.
         return conductorRepository.findById(ConductorId);
     }
@@ -72,11 +67,9 @@ public class ConductorService {
             conductorExistente.setTelefono(detallesConductor.getTelefono());
             conductorExistente.setDireccion(detallesConductor.getDireccion());
             
-            // Nota: Podrías optar por no actualizar el estado aquí, o dejar que la lógica de soft-delete lo maneje.
-    
-            // 3. Guarda la entidad actualizada
+                       // 3. Guarda la entidad actualizada
             return conductorRepository.save(conductorExistente);
-        }).orElse(null); // Devuelve null si no encuentra el cliente
+        }).orElse(null); // Devuelve Null
     }
 
     // 5. ELIMINAR (Delete) - Borrado Lógico
@@ -93,7 +86,7 @@ public class ConductorService {
             conductorRepository.save(conductor); // Persiste el cambio de estado
             return true;
         }
-        return false; // Cliente no encontrado para eliminar
+        return false; //Encontrado para eliminar
     }
 }
 
