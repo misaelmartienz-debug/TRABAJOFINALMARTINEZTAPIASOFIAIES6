@@ -46,8 +46,6 @@ public Vehiculo actualizarVehiculo(Integer idVehiculo, Vehiculo detallesVehiculo
         vehiculoExistente.setModelo(detallesVehiculo.getModelo());
         vehiculoExistente.setColor(detallesVehiculo.getColor());
         vehiculoExistente.setAnio(detallesVehiculo.getAnio());
-
-        // 🔵 ESTA ES LA LÍNEA QUE FALTABA
         vehiculoExistente.setConductor(detallesVehiculo.getConductor());
 
         return vehiculoRepository.save(vehiculoExistente);
