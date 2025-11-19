@@ -2,11 +2,13 @@ package com.example.demo.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Vehiculo {
@@ -15,8 +17,8 @@ public class Vehiculo {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer idVehiculo;
 
-@Column
-private String tipoVehiculo;
+@Enumerated(EnumType.STRING)
+private TipoVehiculo tipoVehiculo;
 
 @Column
 private String patente;
@@ -34,12 +36,12 @@ private String color;
  private Integer anio;
 
 
-@ManyToOne
+@OneToOne
     @JoinColumn(name = "conductor_id") // FOreing KEy
     private Conductor conductor;
 
 @Column
- private boolean estado;
+ private boolean estado= true;
 
 
 //Constructores//
@@ -51,9 +53,9 @@ public Vehiculo (){
 //Parametrizado//
 
 
-public Vehiculo(Integer idVehiculo, String tipoVehiculo, String patente, String marca, String modelo, String color,
+public Vehiculo(TipoVehiculo tipoVehiculo, String patente, String marca, String modelo, String color,
         Integer anio, Conductor conductor) {
-    this.idVehiculo = idVehiculo;
+    
     this.tipoVehiculo = tipoVehiculo;
     this.patente = patente;
     this.marca = marca;
@@ -80,14 +82,15 @@ public void setIdVehiculo(Integer idVehiculo) {
 }
 
 
-public String getTipo() {
+public TipoVehiculo getTipoVehiculo() {
     return tipoVehiculo;
 }
 
-
-public void setTipo(String tipo) {
+public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
     this.tipoVehiculo = tipoVehiculo;
 }
+
+
 
 
 public String getPatente() {
@@ -158,5 +161,4 @@ public boolean isEstado() {
 public void setEstado(boolean estado) {
     this.estado = estado;
 }
-
 }

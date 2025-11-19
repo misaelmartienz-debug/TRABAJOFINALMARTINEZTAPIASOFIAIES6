@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<section layout:fragment="contenido">
+
+    <body class="bg-light">
+
+    <div class="container mt-4">
+
+        <h2 class="mb-4 text-primary">🚗 Lista de Vehículos</h2>
+
+        <!-- CORREGIDO -->
+        <a href="/vehiculos/nuevo" class="btn btn-success mb-3">
+            ➕ Registrar nuevo vehículo
+        </a>
+
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>TipoVehiculo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Patente</th>
+                <th>Color</th>
+                <th>Año</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="vehiculo : ${vehiculos}">
+                <td th:text="${vehiculo.idVehiculo}"></td>
+                <td th:text="${vehiculo.tipoVehiculo}"></td>
+                <td th:text="${vehiculo.marca}"></td>
+                <td th:text="${vehiculo.modelo}"></td>
+                <td th:text="${vehiculo.patente}"></td>
+                <td th:text="${vehiculo.color}"></td>
+                <td th:text="${vehiculo.anio}"></td>
+
+                <td>
+
+                    <!-- CORREGIDO -->
+                    <a th:href="@{'/vehiculo/' + ${vehiculo.idVehiculo}}"
+                       class="btn btn-info btn-sm text-white">Ver</a>
+
+                    <!-- CORREGIDO -->
+                    <a th:href="@{'/vehiculos/editar/' + ${vehiculo.idVehiculo}}"
+                       class="btn btn-warning btn-sm">Editar</a>
+
+                    <a th:href="@{'/vehiculos/eliminar/' + ${vehiculo.idVehiculo}}"
+                       onclick="return confirm('¿Eliminar vehículo?');"
+                       class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    </body>
+
+</section>
+
+</html>

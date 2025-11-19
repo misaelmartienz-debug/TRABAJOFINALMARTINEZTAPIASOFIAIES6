@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Conductores</title>
+</head>
+
+<section layout:fragment="contenido" class="container mt-5">
+
+    <h1 class="text-center mb-4">Lista de Conductores</h1>
+
+    <a href="/conductores/nuevo" class="btn btn-success mb-3">
+        ➕ REGISTRARSE
+    </a>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="c : ${conductores}">
+                    <td th:text="${c.conductorId}"></td>
+                    <td th:text="${c.nombre}"></td>
+                    <td th:text="${c.apellido}"></td>
+                    <td th:text="${c.correoElectronico}"></td>
+                    <td th:text="${c.telefono}"></td>
+                    <td th:text="${c.direccion}"></td>
+                    <td>
+                        <a th:href="@{/conductores/editar/{id}(id=${c.conductorId})}"
+                           class="btn btn-primary btn-sm">
+                           Editar
+                        </a>
+
+                        <a th:href="@{/conductores/eliminar/{id}(id=${c.conductorId})}"
+                           class="btn btn-danger btn-sm ms-2">
+                           Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+</html>

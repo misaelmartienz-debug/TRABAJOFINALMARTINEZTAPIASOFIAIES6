@@ -21,46 +21,28 @@ public class UsuarioService {
     // Métodos CRUD (5 métodos requeridos) 
 
     // 1. CREAR / GUARDAR (Create)
-    /**
-     * Guarda un nuevo cliente o actualiza uno existente.
-     *  El objeto Cliente a persistir.
-     *  El objeto Cliente guardado/actualizado.
-     */
+
     public Usuario guardarUsuario (Usuario usuario) {
         // La lógica podría ir aquí (ej: validar email antes de guardar)
         return usuarioRepository.save(usuario);
     }
     
     // 2. "LEER TODOS' (Read All) - Filtrado por Borrado Lógico
-    /**
-     * Obtiene todos los clientes cuyo estado es TRUE (activos).
-     * Usa el Query Method definido en el Repository.
-     *  Lista de clientes activos.
-     */
     public List<Usuario> obtenerTodosUsuarioActivos() {
     return usuarioRepository.findByEstadoTrue();
 }
 
     // 3. LEER POR ID (Read By ID)
-    /**
-     * Obtiene un cliente por su ID, independientemente de su estado (activo o inactivo).
-     *  El ID del cliente a buscar.
-     *  Un objeto Optional que puede contener el Cliente.
-     */
     public Optional<Usuario> obtenerUsuarioPorId(Integer UsuarioId) {
-        // Usamos findById que devuelve un Optional para manejar la posible ausencia del cliente.
+        // Usamos findById
         return usuarioRepository.findById(UsuarioId);
     }
     
     // 4. ACTUALIZAR (Update)
-    /**
-     * Actualiza la información de un cliente existente.
-     * id El ID del cliente a actualizar.
-     * detallesCliente Los nuevos datos del cliente.
-     *  El cliente actualizado o null si no se encontró.
-     */
+
+    
     public Usuario actualizarUsuario(Integer UsuarioId, Usuario detallesUsuario) {
-        // 1. Busca el cliente existente
+        // 1. Buscar
         return usuarioRepository.findById(UsuarioId).map(usuarioExistente -> {
 
 
@@ -76,15 +58,11 @@ public class UsuarioService {
     
             // 3. Guarda la entidad actualizada
             return usuarioRepository.save(usuarioExistente);
-        }).orElse(null); // Devuelve null si no encuentra el cliente
+        }).orElse(null); // Devuelve null
     }
 
     // 5. ELIMINAR (Delete) - Borrado Lógico
-    /**
-     * Realiza un borrado lógico, cambiando el atributo 'estado' a FALSE.
-     *  El ID del usuario desactivar.
-     *  true si la eliminación lógica fue exitosa, false si el cliente no fue encontrado.
-     */
+    
     public boolean eliminarUsuarioLogico(Integer usuarioId) {
         Optional<Usuario> usuarioEncontrado = usuarioRepository.findById(usuarioId);    
         if (usuarioEncontrado.isPresent()) {
@@ -93,6 +71,6 @@ public class UsuarioService {
             usuarioRepository.save(usuario); // Persiste el cambio de estado
             return true;
         }
-        return false; // Cliente no encontrado para eliminar
+        return false;
     }
 }

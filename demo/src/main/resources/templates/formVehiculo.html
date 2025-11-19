@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Vehículo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-success text-white">
+            <h3 th:text="${vehiculo.idVehiculo != null} ? '✏ Editar Vehículo' : '➕ Registrar Vehículo'"></h3>
+        </div>
+
+        <div class="card-body">
+
+            <form th:object="${vehiculo}"
+                  th:action="${vehiculo.idVehiculo == null} ? 
+                             @{/vehiculos/guardar} : 
+                             @{'/vehiculos/editar/' + ${vehiculo.idVehiculo}}"
+                  method="post">
+
+                <!-- Tipo de Vehículo -->
+                <div class="mb-3">
+                    <label class="form-label">Tipo de vehículo</label>
+                    <select th:field="*{tipoVehiculo}" class="form-select" required>
+                        <option value="">Seleccioná un tipo</option>
+                        <option value="X">X (Base)</option>
+                        <option value="LUXE">Luxe (+10%)</option>
+                        <option value="PREMIUM">Premium (+20%)</option>
+                    </select>
+                </div>
+
+                <!-- Marca -->
+                <div class="mb-3">
+                    <label class="form-label">Marca</label>
+                    <input type="text" th:field="*{marca}" class="form-control" required>
+                </div>
+
+                <!-- Modelo -->
+                <div class="mb-3">
+                    <label class="form-label">Modelo</label>
+                    <input type="text" th:field="*{modelo}" class="form-control" required>
+                </div>
+
+                <!-- Patente -->
+                <div class="mb-3">
+                    <label class="form-label">Patente</label>
+                    <input type="text" th:field="*{patente}" class="form-control" required>
+                </div>
+
+                <!-- Color -->
+                <div class="mb-3">
+                    <label class="form-label">Color</label>
+                    <input type="text" th:field="*{color}" class="form-control">
+                </div>
+
+                <!-- Año -->
+                <div class="mb-3">
+                    <label class="form-label">Año</label>
+                    <input type="number" th:field="*{anio}" class="form-control" required>
+                </div>
+
+                <!-- ⭐⭐⭐ SELECT DEL CONDUCTOR (ESTO ES LO QUE FALTABA) ⭐⭐⭐ -->
+                <div class="mb-3">
+                    <label class="form-label">Conductor</label>
+                    <select class="form-select" name="conductor.conductorId" required>
+                        <option value="">Seleccioná un conductor</option>
+                        <option th:each="c : ${conductores}"
+                                th:value="${c.conductorId}"
+                                th:text="${c.nombre + ' ' + c.apellido}">
+                        </option>
+                    </select>
+                </div>
+                <!-- FIN DEL SELECT DEL CONDUCTOR -->
+
+                <button type="submit" class="btn btn-primary">💾 Guardar</button>
+                <a href="/vehiculos" class="btn btn-secondary ms-2">Cancelar</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Viaje</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Detalle del Viaje</h3>
+        </div>
+
+        <div class="card-body">
+
+            <!-- DATOS DEL VIAJE -->
+            <h5 class="mt-3">📌 Información del Viaje</h5>
+            <p><strong>ID Viaje:</strong> <span th:text="${viaje.viajeId}"></span></p>
+            <p><strong>Tipo de Viaje:</strong> <span th:text="${viaje.tipoViaje}"></span></p>
+            <p><strong>Fecha y Hora:</strong> <span th:text="${viaje.fechaViaje}"></span></p>
+            <p><strong>Precio Final:</strong> $<span th:text="${viaje.precio}"></span></p>
+
+
+            <!-- DATOS DEL USUARIO -->
+            <h5 class="mt-4">👤 Usuario</h5>
+            <p><strong>ID Usuario:</strong> <span th:text="${viaje.usuario.usuarioId}"></span></p>
+            <p><strong>Nombre:</strong> <span th:text="${viaje.usuario.nombre}"></span></p>
+            <p><strong>Apellido:</strong> <span th:text="${viaje.usuario.apellido}"></span></p>
+
+
+            <!-- DATOS DEL VEHÍCULO -->
+            <h5 class="mt-4">🚗 Vehículo Seleccionado</h5>
+            <p><strong>ID Vehículo:</strong> <span th:text="${viaje.vehiculo.idVehiculo}"></span></p>
+            <p><strong>Tipo Vehículo:</strong> <span th:text="${viaje.vehiculo.tipoVehiculo}"></span></p>
+            <p><strong>Marca:</strong> <span th:text="${viaje.vehiculo.marca}"></span></p>
+            <p><strong>Modelo:</strong> <span th:text="${viaje.vehiculo.modelo}"></span></p>
+            <p><strong>Patente:</strong> <span th:text="${viaje.vehiculo.patente}"></span></p>
+            <p><strong>Color:</strong> <span th:text="${viaje.vehiculo.color}"></span></p>
+            <p><strong>Año:</strong> <span th:text="${viaje.vehiculo.anio}"></span></p>
+
+
+            <!-- DATOS DEL CONDUCTOR -->
+            <h5 class="mt-4">🧑‍✈️ Conductor</h5>
+            <p><strong>ID Conductor:</strong> <span th:text="${viaje.vehiculo.conductor.conductorId}"></span></p>
+            <p><strong>Nombre:</strong> <span th:text="${viaje.vehiculo.conductor.nombre}"></span></p>
+            <p><strong>Apellido:</strong> <span th:text="${viaje.vehiculo.conductor.apellido}"></span></p>
+
+            <a href="/" class="btn btn-secondary mt-4">⬅ Volver al inicio</a>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

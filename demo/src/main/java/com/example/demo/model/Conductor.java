@@ -1,141 +1,130 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Entity
-
 public class Conductor {
-@Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Integer conductorId;
-@Column
- private String nombre;
 
-@Column
- private String apellido;
-@Column
- private Integer telefono;
-@Column
-private String  correoElectronico;
-@Column
-private Integer edad;
-@Column
-private String direccion; 
-@Column
-private boolean estado;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer conductorId;
 
+    @Column
+    private String nombre;
 
-// Constructor por defecto//
-public Conductor() {}
+    @Column
+    private String apellido;
 
-// Contructor con Parametros//
-public Conductor (String nombre, String apellido, Integer telefono, String correoElectronico, Integer edad, String dirección){
- this.nombre= nombre;
- this.apellido=apellido;
- this.telefono=telefono;
- this.correoElectronico=correoElectronico;
- this.edad=edad;
- this.direccion=direccion;
- this.estado= true;
-}
+    @Column(nullable = false)
+    @Min(1000000000L)   // mínimo 10 dígitos
+    @Max(9999999999L)   // máximo 10 dígitos
+    private Long telefono;
 
+    @Column
+    private String correoElectronico;
 
+    @Column
+    private Integer edad;
 
+    @Column
+    private String direccion;
 
+    @Column
+    private boolean estado = true;
 
+    // 🔹 RELACIÓN 1:1 — Un Conductor tiene un solo Vehículo
+    @OneToOne(mappedBy = "conductor")
+    private Vehiculo vehiculo;
 
+    // Constructor vacío
+    public Conductor() {}
 
+    // Constructor con parámetros
+    public Conductor(String nombre, String apellido, Long telefono,
+                     String correoElectronico, Integer edad, String direccion) {
 
-//getter y setters//
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
+        this.edad = edad;
+        this.direccion = direccion;
+        this.estado = true;
+    }
 
-public Integer getConductorId() {
-    return conductorId;
-}
+    // GETTERS Y SETTERS
 
-public void setConductorId(Integer conductorId) {
-    this.conductorId = conductorId;
-}
+    public Integer getConductorId() {
+        return conductorId;
+    }
 
-public String getNombre() {
-    return nombre;
-}
+    public void setConductorId(Integer conductorId) {
+        this.conductorId = conductorId;
+    }
 
-public void setNombre(String nombre) {
-    this.nombre = nombre;
-}
+    public String getNombre() {
+        return nombre;
+    }
 
-public String getApellido() {
-    return apellido;
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-public void setApellido(String apellido) {
-    this.apellido = apellido;
-}
+    public String getApellido() {
+        return apellido;
+    }
 
-public Integer getTelefono() {
-    return telefono;
-}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-public void setTelefono(Integer telefono) {
-    this.telefono = telefono;
-}
+    public Long getTelefono() {
+        return telefono;
+    }
 
-public String getCorreoElectronico() {
-    return correoElectronico;
-}
+    public void setTelefono(Long telefono) {
+        this.telefono = telefono;
+    }
 
-public void setCorreoElectronico(String correoElectronico) {
-    this.correoElectronico = correoElectronico;
-}
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
 
-public Integer getEdad() {
-    return edad;
-}
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
 
-public void setEdad(Integer edad) {
-    this.edad = edad;
-}
+    public Integer getEdad() {
+        return edad;
+    }
 
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
 
-public boolean isEstado() {
-    return estado;
-}
+    public String getDireccion() {
+        return direccion;
+    }
 
-public void setEstado(boolean estado) {
-    this.estado = estado;
-}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
-public String getDireccion() {
-    return direccion;
-}
+    public boolean isEstado() {
+        return estado;
+    }
 
-public void setDireccion(String direccion) {
-    this.direccion = direccion;
-}
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//@OneToMany // la clase del conductor tiene muchos autos,
-    
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
 }
