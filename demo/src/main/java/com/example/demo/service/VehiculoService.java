@@ -37,18 +37,23 @@ public Optional<Vehiculo> obtenerVehiculoPorId (Integer idVehiculo) {
 }
 //Actualizar si existe el vehiculo, map es parte de un condicional en el cual si existe o encontro por Id el vehiculo
 //Una nueva funcion vehiculoExistente donde va a tener a remplazar SET en datos GET del Vehiculo ya encontrado
-public Vehiculo actualizarVehiculo (Integer idVehiculo, Vehiculo detallesVehiculo) {
-    return vehiculoRepository.findById(idVehiculo).map (vehiculoExistente -> {
+public Vehiculo actualizarVehiculo(Integer idVehiculo, Vehiculo detallesVehiculo) {
+    return vehiculoRepository.findById(idVehiculo).map(vehiculoExistente -> {
+
         vehiculoExistente.setTipoVehiculo(detallesVehiculo.getTipoVehiculo());
         vehiculoExistente.setPatente(detallesVehiculo.getPatente());
         vehiculoExistente.setMarca(detallesVehiculo.getMarca());
         vehiculoExistente.setModelo(detallesVehiculo.getModelo());
         vehiculoExistente.setColor(detallesVehiculo.getColor());
         vehiculoExistente.setAnio(detallesVehiculo.getAnio());
-        return vehiculoRepository.save( vehiculoExistente);
-        }).orElse(null);
-    
-    }
+
+        // 🔵 ESTA ES LA LÍNEA QUE FALTABA
+        vehiculoExistente.setConductor(detallesVehiculo.getConductor());
+
+        return vehiculoRepository.save(vehiculoExistente);
+    }).orElse(null);
+}
+
 
 //Eliminar Vehiculo (Borrado Logico)
 public boolean eliminarVehiculo (Integer idVehiculo) {
@@ -62,14 +67,6 @@ public boolean eliminarVehiculo (Integer idVehiculo) {
     return false;
 
 }
-
-
-
-
-
-
-
-
 }
 
 

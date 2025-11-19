@@ -1,72 +1,108 @@
 package com.example.demo.model;
 
 import java.time.LocalDateTime;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 @Entity
 public class Viaje {
-    
-@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer viajeId; // Primary Key
 
-@ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false) 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer viajeId;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-
-@ManyToOne 
-    @JoinColumn(name = "vehiculo_id", nullable = false) // Ya NO es UNIQUE
+    @ManyToOne
+    @JoinColumn(name = "vehiculo_id", nullable = false)
     private Vehiculo vehiculo;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private LocalDateTime fechaViaje; // Para fecha y hora
+    private TipoViaje tipoViaje;
+
+    @Column(nullable = false)
+    private LocalDateTime fechaViaje;
 
     @Column(nullable = false)
     private Double precio;
 
-    // Atributo de Borrado Lógico
     @Column(nullable = false)
     private boolean estado = true;
 
-    // Constructores, Getters y Setters...
-
- // Constructor Vacío
-    public Viaje() {}
-
-// Constructor con parámetros
-    public Viaje(Usuario usuario , Vehiculo Vehiculo, LocalDateTime fechaCompra, Double precioFinal) {
-        this.usuario = usuario;
-        this.vehiculo = vehiculo;
-        this.fechaViaje = fechaViaje;
-        this.precio = precio;
-        this.estado = true;
+    // Constructor vacío
+    public Viaje() {
     }
 
-      // Getters y Setters
+    // Constructor con parámetros
+    public Viaje(Integer viajeId, Usuario usuario, Vehiculo vehiculo, TipoViaje tipoViaje, LocalDateTime fechaViaje,
+            Double precio, boolean estado) {
+        this.viajeId = viajeId;
+        this.usuario = usuario;
+        this.vehiculo = vehiculo;
+        this.tipoViaje = tipoViaje;
+        this.fechaViaje = fechaViaje;
+        this.precio = precio;
+        this.estado = estado;
+    }
 
-    public Integer getViajeId() { return viajeId; }
+    // Getters y setters
 
-    public void setViajeId(Integer viajeId) { this.viajeId = viajeId; }
+    public Integer getViajeId() {
+        return viajeId;
+    }
 
+    public void setViajeId(Integer viajeId) {
+        this.viajeId = viajeId;
+    }
 
-    public Usuario getUsario() { return usuario; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-    public Vehiculo getVehiculo() { return vehiculo; } 
-    public void setVehiculo( Vehiculo vehiculo) { this.vehiculo = vehiculo; }
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
 
-    public LocalDateTime getFechaViaje() { return fechaViaje; }
-    public void setFechaViaje (LocalDateTime fechaCompra) { this.fechaViaje = fechaViaje; }
-    public Double getPrecio() { return precio; }
-    public void setPrecio(Double precio) { this.precio = precio; }
-    public boolean isEstado() { return estado; }
-    public void setEstado(boolean estado) { this.estado = estado; }
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public TipoViaje getTipoViaje() {
+        return tipoViaje;
+    }
+
+    public void setTipoViaje(TipoViaje tipoViaje) {
+        this.tipoViaje = tipoViaje;
+    }
+
+    public LocalDateTime getFechaViaje() {
+        return fechaViaje;
+    }
+
+    public void setFechaViaje(LocalDateTime fechaViaje) {
+        this.fechaViaje = fechaViaje;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
 }

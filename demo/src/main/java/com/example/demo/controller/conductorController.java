@@ -85,4 +85,17 @@ public class conductorController {
         // Volvemos a la lista de conductores
         return "redirect:/conductores";
     }
+
+    // 🟣 7) DETALLE DE CONDUCTOR
+@GetMapping("/conductores/{id}")
+public String verDetalleConductor(@PathVariable("id") Integer id, Model model) {
+
+    Conductor conductor = conductorService.obtenerConductorPorId(id)
+            .orElseThrow(() -> new RuntimeException("Conductor no encontrado"));
+
+    model.addAttribute("conductor", conductor);
+
+    return "detalleConductor"; 
+}
+
 }

@@ -6,9 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class indexController {
 
-    @GetMapping({"/", "/index"})
-    public String index() {
-        return "index";
+    @GetMapping("/")
+    public String inicio() {
+        return "index"; // tu página principal que tiene el botón Pedir un viaje
     }
-    
+
+    // Si intenta ir a "Viajes" sin usuario → lo mando a registrar usuario
+    @GetMapping("/viajes")
+    public String viajes() {
+        return "redirect:/usuarios/nuevo";
+    }
+
+    @GetMapping("/viaje/nuevo")
+    public String nuevoViaje() {
+        return "redirect:/usuarios/nuevo";
+    }
 }

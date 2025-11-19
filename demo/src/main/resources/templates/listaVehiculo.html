@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Vehículos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 
-<body class="bg-light">
+<section layout:fragment="contenido">
 
-<div class="container mt-4">
+    <body class="bg-light">
 
-    <h2 class="mb-4 text-primary">🚗 Lista de Vehículos</h2>
+    <div class="container mt-4">
 
-    <a href="/vehiculo/nuevo" class="btn btn-success mb-3">➕ Registrar nuevo vehículo</a>
+        <h2 class="mb-4 text-primary">🚗 Lista de Vehículos</h2>
 
-    <table class="table table-striped table-hover shadow-sm">
-        <thead class="table-dark">
+        <!-- CORREGIDO -->
+        <a href="/vehiculos/nuevo" class="btn btn-success mb-3">
+            ➕ Registrar nuevo vehículo
+        </a>
+
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="table-dark">
             <tr>
                 <th>ID</th>
+                <th>TipoVehiculo</th>
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Patente</th>
+                <th>Color</th>
+                <th>Año</th>
                 <th>Acciones</th>
             </tr>
-        </thead>
+            </thead>
 
-        <tbody>
+            <tbody>
             <tr th:each="vehiculo : ${vehiculos}">
                 <td th:text="${vehiculo.idVehiculo}"></td>
+                <td th:text="${vehiculo.tipoVehiculo}"></td>
                 <td th:text="${vehiculo.marca}"></td>
                 <td th:text="${vehiculo.modelo}"></td>
                 <td th:text="${vehiculo.patente}"></td>
+                <td th:text="${vehiculo.color}"></td>
+                <td th:text="${vehiculo.anio}"></td>
 
                 <td>
-                    <a th:href="@{'/vehiculos/' + ${vehiculo.idVehiculo}}"
+
+                    <!-- CORREGIDO -->
+                    <a th:href="@{'/vehiculo/' + ${vehiculo.idVehiculo}}"
                        class="btn btn-info btn-sm text-white">Ver</a>
 
-                    <a th:href="@{'/vehiculo/editar/' + ${vehiculo.idVehiculo}}"
+                    <!-- CORREGIDO -->
+                    <a th:href="@{'/vehiculos/editar/' + ${vehiculo.idVehiculo}}"
                        class="btn btn-warning btn-sm">Editar</a>
 
                     <a th:href="@{'/vehiculos/eliminar/' + ${vehiculo.idVehiculo}}"
@@ -44,10 +55,13 @@
                        class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</div>
+    </div>
 
-</body>
+    </body>
+
+</section>
+
 </html>

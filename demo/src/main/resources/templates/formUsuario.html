@@ -31,12 +31,16 @@
     <div class="container">
 
         <div class="card shadow p-4">
+            
+            <!-- TÍTULO DINÁMICO -->
             <h2 th:text="${usuario.usuarioId == null} ? 'Nuevo Usuario' : 'Editar Usuario'"></h2>
 
             <!-- FORMULARIO -->
-            <form
-                th:action="${usuario.usuarioId == null} ? @{/usuarios/guardar} : @{/usuarios/actualizar/{id}(id=${usuario.usuarioId})}"
-                th:object="${usuario}" method="post">
+            <form th:action="${usuario.usuarioId == null} 
+                                ? @{/usuario/guardar} 
+                                : @{/usuarios/actualizar/{id}(id=${usuario.usuarioId})}"
+                  th:object="${usuario}" 
+                  method="post">
 
                 <!-- NOMBRE -->
                 <div class="mb-3">
@@ -59,12 +63,11 @@
                 <!-- TELEFONO -->
                 <div class="mb-3">
                     <label class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" th:field="*{telefono}" min="1000000000" max="9999999999"
-                        required>
-
+                    <input type="number" class="form-control" th:field="*{telefono}" 
+                           min="1000000000" max="9999999999" required>
                 </div>
 
-                <!-- DIRECCION -->
+                <!-- DIRECCIÓN -->
                 <div class="mb-3">
                     <label class="form-label">Dirección:</label>
                     <input type="text" class="form-control" th:field="*{direccion}">

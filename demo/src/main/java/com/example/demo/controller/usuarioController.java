@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.UsuarioService;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -44,8 +46,16 @@ public class usuarioController {
         return "formUsuario"; // vista del formulario
     }
     // 🔵 3) GUARDAR USUARIO (CREATE)
-    @PostMapping("/usuarios/guardar")
-    public String guardarUsuario(@ModelAttribute Usuario usuario) {
+   @PostMapping("/usuario/guardar")
+public String guardarUsuario(@ModelAttribute Usuario usuario, HttpSession session) {
+
+    usuarioService.guardarUsuario(usuario);
+
+    // Guardamos el usuario en sesión para saber que ya está logueado
+    session.setAttribute("usuarioLogueado", usuario);
+
+    return "redirect:/";
+}
 
         // Guardamos usando el service
         usuarioService.guardarUsuario(usuario);
@@ -55,6 +65,19 @@ public class usuarioController {
         }
     
 
+
+    //🔴 4) ELIMINAR USUARIO (BORRADO LÓGICO)
+    @GetMapping("/usuarios/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable("id") Integer id) {
+
+        usuarioService.eliminarUsuarioLogico(id);
+
+        return "redirect:/usuarios";
+    }
+
+     // 🟤 5) FORMULARIO PARA EDITAR
+    @GetMapping("/usuarios/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable("id") Integer id, Model model) {
 
     //🔴 4) ELIMINAR USUARIO (BORRADO LÓGICO)
     @GetMapping("/usuarios/eliminar/{id}")
@@ -90,6 +113,17 @@ public String actualizarUsuario(@PathVariable("id") Integer id, @ModelAttribute 
 
     // Redirige a la lista de usuarios
     return "redirect:/usuarios";
+}
+// 🟣 7) DETALLE DE USUARIO
+@GetMapping("/usuarios/{id}")
+public String verDetalleUsuario(@PathVariable("id") Integer id, Model model) {
+
+    Usuario usuario = usuarioService.obtenerUsuarioPorId(id)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+    model.addAttribute("usuario", usuario);
+
+    return "detalleUsuario";
 }
 
 }

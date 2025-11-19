@@ -19,14 +19,20 @@
         <div class="card-body">
 
             <p><strong>ID:</strong> <span th:text="${vehiculo.idVehiculo}"></span></p>
+            <p><strong>TipoVehiculo:</strong> <span th:text="${vehiculo.tipoVehiculo}"></span></p>
             <p><strong>Marca:</strong> <span th:text="${vehiculo.marca}"></span></p>
             <p><strong>Modelo:</strong> <span th:text="${vehiculo.modelo}"></span></p>
             <p><strong>Patente:</strong> <span th:text="${vehiculo.patente}"></span></p>
             <p><strong>Color:</strong> <span th:text="${vehiculo.color}"></span></p>
+            <p><strong>Año:</strong> <span th:text="${vehiculo.anio}"></span></p>
 
             <a href="/vehiculos" class="btn btn-secondary mt-3">⬅ Volver a la lista</a>
-            <a th:href="@{'/vehiculo/editar/' + ${vehiculo.idVehiculo}}"
-               class="btn btn-warning mt-3">✏ Editar</a>
+
+            <!-- 🔥 CORREGIDO -->
+            <a th:href="@{'/vehiculos/editar/' + ${vehiculo.idVehiculo}}"
+               class="btn btn-warning mt-3">
+                ✏ Editar
+            </a>
 
         </div>
 
