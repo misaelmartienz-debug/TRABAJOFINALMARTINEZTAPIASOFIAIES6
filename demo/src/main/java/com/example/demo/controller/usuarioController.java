@@ -57,7 +57,27 @@ public String guardarUsuario(@ModelAttribute Usuario usuario, HttpSession sessio
     return "redirect:/";
 }
 
+        // Guardamos usando el service
+        usuarioService.guardarUsuario(usuario);
 
+        // Después de guardar, volvemos a la lista
+        return "redirect:/usuarios";
+        }
+    
+
+
+    //🔴 4) ELIMINAR USUARIO (BORRADO LÓGICO)
+    @GetMapping("/usuarios/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable("id") Integer id) {
+
+        usuarioService.eliminarUsuarioLogico(id);
+
+        return "redirect:/usuarios";
+    }
+
+     // 🟤 5) FORMULARIO PARA EDITAR
+    @GetMapping("/usuarios/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable("id") Integer id, Model model) {
 
     //🔴 4) ELIMINAR USUARIO (BORRADO LÓGICO)
     @GetMapping("/usuarios/eliminar/{id}")
