@@ -103,7 +103,7 @@ public String verDetalleUsuario(@PathVariable("id") Integer id, Model model) {
 
     model.addAttribute("usuario", usuario);
 
-    return "detalleUsuario";
+    return "detalleUsuario";// devuelve los detalles del usuario
 }
 
 }
