@@ -8,7 +8,7 @@ public class indexController {
 
     @GetMapping("/")
     public String inicio() {
-        return "index"; // tu página principal que tiene el botón Pedir un viaje
+        return "index"; 
     }
 
     // Si intenta ir a "Viajes" sin usuario → lo mando a registrar usuario

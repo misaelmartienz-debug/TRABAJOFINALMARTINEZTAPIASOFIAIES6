@@ -67,7 +67,7 @@ public class UsuarioService {
         Optional<Usuario> usuarioEncontrado = usuarioRepository.findById(usuarioId);    
         if (usuarioEncontrado.isPresent()) {
             Usuario usuario = usuarioEncontrado.get();
-            usuario.setEstado(false); // 🔑 Lógica clave: Borrado Lógico
+            usuario.setEstado(false); //  Lógica clave: Borrado Lógico
             usuarioRepository.save(usuario); // Persiste el cambio de estado
             return true;
         }

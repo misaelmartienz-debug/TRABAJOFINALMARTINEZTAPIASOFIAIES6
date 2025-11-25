@@ -13,7 +13,7 @@
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
 
-        <!-- 🔥 se muestran solo vehiculos con conductor, evita errores -->
+    
         <div class="col" th:each="v : ${vehiculos}" th:if="${v.conductor != null}">
             <div class="card shadow">
 
