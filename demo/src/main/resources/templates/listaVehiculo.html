@@ -11,7 +11,6 @@
 
         <h2 class="mb-4 text-primary">🚗 Lista de Vehículos</h2>
 
-        <!-- CORREGIDO -->
         <a href="/vehiculos/nuevo" class="btn btn-success mb-3">
             ➕ Registrar nuevo vehículo
         </a>
@@ -42,11 +41,11 @@
 
                 <td>
 
-                    <!-- CORREGIDO -->
+                   
                     <a th:href="@{'/vehiculo/' + ${vehiculo.idVehiculo}}"
                        class="btn btn-info btn-sm text-white">Ver</a>
 
-                    <!-- CORREGIDO -->
+                    
                     <a th:href="@{'/vehiculos/editar/' + ${vehiculo.idVehiculo}}"
                        class="btn btn-warning btn-sm">Editar</a>
 

@@ -24,7 +24,7 @@
                              @{'/vehiculos/editar/' + ${vehiculo.idVehiculo}}"
                   method="post">
 
-                <!-- Tipo de Vehículo -->
+                
                 <div class="mb-3">
                     <label class="form-label">Tipo de vehículo</label>
                     <select th:field="*{tipoVehiculo}" class="form-select" required>
@@ -35,37 +35,36 @@
                     </select>
                 </div>
 
-                <!-- Marca -->
+               
                 <div class="mb-3">
                     <label class="form-label">Marca</label>
                     <input type="text" th:field="*{marca}" class="form-control" required>
                 </div>
 
-                <!-- Modelo -->
+                
                 <div class="mb-3">
                     <label class="form-label">Modelo</label>
                     <input type="text" th:field="*{modelo}" class="form-control" required>
                 </div>
 
-                <!-- Patente -->
+                
                 <div class="mb-3">
                     <label class="form-label">Patente</label>
                     <input type="text" th:field="*{patente}" class="form-control" required>
                 </div>
 
-                <!-- Color -->
                 <div class="mb-3">
                     <label class="form-label">Color</label>
                     <input type="text" th:field="*{color}" class="form-control">
                 </div>
 
-                <!-- Año -->
+                
                 <div class="mb-3">
                     <label class="form-label">Año</label>
                     <input type="number" th:field="*{anio}" class="form-control" required>
                 </div>
 
-                <!-- ⭐⭐⭐ SELECT DEL CONDUCTOR (ESTO ES LO QUE FALTABA) ⭐⭐⭐ -->
+                <!-- SELECT DEL CONDUCTOR  -->
                 <div class="mb-3">
                     <label class="form-label">Conductor</label>
                     <select class="form-select" name="conductor.conductorId" required>
@@ -76,7 +75,6 @@
                         </option>
                     </select>
                 </div>
-                <!-- FIN DEL SELECT DEL CONDUCTOR -->
 
                 <button type="submit" class="btn btn-primary">💾 Guardar</button>
                 <a href="/vehiculos" class="btn btn-secondary ms-2">Cancelar</a>

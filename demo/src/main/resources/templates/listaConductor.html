@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="es"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -40,14 +38,17 @@
                     <td th:text="${c.telefono}"></td>
                     <td th:text="${c.direccion}"></td>
                     <td>
-                        <a th:href="@{/conductores/editar/{id}(id=${c.conductorId})}"
-                           class="btn btn-primary btn-sm">
-                           Editar
+
+                        <a th:href="@{/conductores/{id}(id=${c.conductorId})}" class="btn btn-info btn-sm text-white">Ver</a>
+
+
+                        <a th:href="@{/conductores/editar/{id}(id=${c.conductorId})}" class="btn btn-primary btn-sm">
+                            Editar
                         </a>
 
                         <a th:href="@{/conductores/eliminar/{id}(id=${c.conductorId})}"
-                           class="btn btn-danger btn-sm ms-2">
-                           Eliminar
+                            class="btn btn-danger btn-sm ms-2">
+                            Eliminar
                         </a>
                     </td>
                 </tr>

@@ -19,22 +19,21 @@ public class ViajeService {
     @Autowired
     private ViajeRepository viajeRepository;
 
-    // 🔵 GUARDAR VIAJE
+    // Guardar un viaje
     public Viaje guardarViaje(Viaje viaje) {
         return viajeRepository.save(viaje);
     }
 
-    // 🔵 BUSCAR VIAJE POR ID
+    // Buscar viaje por ID
     public Optional<Viaje> obtenerViajePorId(Integer id) {
         return viajeRepository.findById(id);
     }
 
-    // 🔵 CALCULAR PRECIO SEGÚN TIPO DE VIAJE Y VEHÍCULO
+    // Calcular precio según tipo de viaje y tipo de vehículo
     public double calcularPrecio(TipoViaje tipoViaje, TipoVehiculo tipoVehiculo) {
 
         double base = 0;
 
-        // Precio base por distancia
         switch (tipoViaje) {
             case CORTA:
                 base = 7000;
@@ -47,25 +46,24 @@ public class ViajeService {
                 break;
         }
 
-        // Aumento según tipo de vehículo
         double extra = 0;
 
         switch (tipoVehiculo) {
             case X:
-                extra = 0;       // sin aumento
+                extra = 0;
                 break;
             case LUXE:
-                extra = 0.10;    // +10%
+                extra = 0.10;
                 break;
             case PREMIUM:
-                extra = 0.20;    // +20%
+                extra = 0.20;
                 break;
         }
 
         return base + (base * extra);
     }
 
-    // 🔵 REGISTRAR VIAJE COMPLETO
+    // Registrar un viaje completo
     public Viaje registrarViaje(Usuario usuario, Vehiculo vehiculo, TipoViaje tipoViaje) {
 
         double precioFinal = calcularPrecio(tipoViaje, vehiculo.getTipoVehiculo());
@@ -82,6 +80,3 @@ public class ViajeService {
     }
 
 }
-
-
-

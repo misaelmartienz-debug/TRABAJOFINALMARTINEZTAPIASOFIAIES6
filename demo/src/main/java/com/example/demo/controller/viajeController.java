@@ -23,7 +23,7 @@ public class viajeController {
     private ViajeService viajeService;
 
 
-    // ⭐ PASO 0: Mostrar tipo de viaje
+    // PASO 1: Mostrar tipo de viaje
     @GetMapping("/viajes/inicio")
     public ModelAndView mostrarTiposDeViaje(HttpSession session) {
 
@@ -35,7 +35,7 @@ public class viajeController {
     }
 
 
-    // ⭐ PASO 1: Elegir vehículo (recibe tipoViaje)
+    //PASO 2: Elegir vehículo (recibe tipoViaje)
     @GetMapping("/viajes/seleccionar")
     public ModelAndView seleccionarVehiculo(
             @RequestParam TipoViaje tipoViaje,
@@ -58,7 +58,7 @@ public class viajeController {
     }
 
 
-    // ⭐ PASO 2: Registrar el viaje
+    //PASO 3: Registrar el viaje
     @PostMapping("/viajes/registrar")
     public ModelAndView registrarViaje(
             @RequestParam Integer vehiculoId,
